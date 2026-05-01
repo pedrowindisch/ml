@@ -1,0 +1,42 @@
+# Respostas
+
+## Grupo de dados 1:
+### Q1.1. Qual é a acurácia máxima que você consegue da classificação?
+Com k = 3 tivemos uma acurácia de 0.98, sendo esta a maior rodando de k = 0 até 100. Ver código no ipybn.
+
+### Q1.2. É necessário ter todas as características (atributos) para obter a acurácia máxima para esta classificação?
+Olhando os gráficos de dispersão, é possível observar que os as features (2, 3) já fazem uma boa separação dos dados, assim, poderíamos em tese usar apenas elas.
+Testamos isso com o código abaixo e, usando apenas estas features, obtivemos a mesma acurácia, porém com um k maior (de 25, o que pode ser underfitting).
+Isso pode ser devido a redundância de atributos (dois atributos estão muito correlacionados não adicionam informação nova)
+
+=======================================================
+
+## Grupo de dados 2
+### Q2.1: Aplique seu kNN a este problema. Qual é a sua acurácia de classificação?
+68.3%
+
+### Q2.2: A acurácia pode ser igual a 98% com o kNN. Descubra por que o resultado atual é muito menor. Ajuste o conjunto de dados ou k de tal forma que a acurácia se torne 98% e explique o que você fez e por quê.
+fizemos análise gráfica/exploratória dos dados e vimos que as features 6 e 12 (flavonoides e prolina) separavam bastante os dados. Fizemos o teste usando apenas essas duas features e chegamos numa acurácia de 93%. Com essas duas features, fizemos um teste adicionando uma terceira (iteramos por todas elas) e vimos que adicionando a feature 9, intensidade de cor, chegamos numa acurácia de 100% com k = 10. para chegar na acurácia de 98%, poderíamos usar as features 0, 6 e 12 (álcool, flav. e prolina), com k = 6.
+
+Conversando com a professora, notamos que nossa implementação não estava no caminho certo, então refizemos com a normalização dos dados, como foi sugerido, o que gerou uma acurácia de 98% com k = 3.
+
+
+=======================================================
+
+## Grupo de dados 3
+### Q3.1: Aplique o kNN ao problema usando k = 1. Qual é a acurácia na classificação?
+70%
+
+### Q3.2: A acurácia pode ser igual a 92% com o kNN. Descubra por que o resultado atual é muito menor. Ajuste o conjunto de dados ou k de tal forma que a acurácia se torne 92% e explique o que você fez e por quê.
+Encontramos uma acurácia de 92% utilizando k = 7 e fazendo a normalização dos dados (vimos que os dados da primeira coluna vão de 4.3 até 7.7, enquanto da segunda coluna de 0.1 até 2.5, o que afeta o cálculo da distância euclidiana). Usamos o minmax scaling para colocar ambas as colunas num intervalo de 0 a 1.
+Encontramos uma acurácia ainda maior com k = 9 (de 94%), mas achamos ser um k muito alto para o volume de dados.
+
+=======================================================
+
+## Grupo de dados 4
+### Q4.1: Aplique seu algoritmo K-NN ao problema. Qual é a sua acurácia de classificação?
+Encontramos, com k = 4, uma acurácia de 77% (0.7667)
+
+Q4.2: A acurácia pode chegar a 92% com o K-NN. Descubra por que o resultado atual é muito menor. Ajuste o conjunto de dados ou o valor de k de forma que a acurácia atinja 92% e explique o que você fez e por quê. Observe que, desta vez, há mais de um problema...
+Pelo gráficos que fizemos, percebemos alguns problemas: o atributo 2 tem uma escala muito diferente dos outros, o que pode prejudicar o knn e, além disso, os atributos 3 e 4 parecem ter uma distribuição muito similar, o que pode indicar ruído ou redundância
+Normalizando os dados e removendo as duas features geradoras de ruído, testamos o knn novamente e chegamos a uma acurácia de 93% com K = 2 
